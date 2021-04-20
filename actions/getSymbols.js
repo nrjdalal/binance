@@ -4,8 +4,8 @@ const api = 'https://api.binance.com/api/v3'
 
 const getSymbols = async (limitVolume = 50000000) => {
 	try {
-		console.log('\nGetting symbols from Binance!\n')
-		const res = await axios.get(`${api}/ticker/24hr`)
+		console.log('Getting symbols from Binance!\n')
+		const res = await axios.get(api + '/ticker/24hr')
 		const tempSymbols = []
 
 		for (i = 0; i < res.data.length; i++) {
@@ -22,7 +22,7 @@ const getSymbols = async (limitVolume = 50000000) => {
 
 		return symbols.map((x) => x.symbol)
 	} catch {
-		console.log('\nSomething went wrong!\n')
+		console.log('Something went wrong!\n')
 	}
 }
 

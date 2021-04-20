@@ -1,16 +1,11 @@
-const axios = require('axios')
-
-const log = console.log
-
-const api = 'https://api.binance.com/api/v3'
-
 const cryptoBot = async () => {
-	// getting symbols in descending volume
 	const getSymbols = require('./actions/getSymbols')
 	const symbols = await getSymbols()
 
-	log(symbols)
-	log(symbols.length)
+	const klineData = require('./actions/klineData')
+	klineArray = await klineData(symbols, ['5m', '15m', '30m', '1h'])
+
+	console.log(klineArray)
 }
 
 cryptoBot()
