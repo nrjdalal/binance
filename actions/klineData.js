@@ -11,7 +11,7 @@ const klineData = async (symbols, intervals, limit = 100) => {
 		const klineArray = []
 
 		for (i = 0; i < symbols.length; i++) {
-			console.log('Getting kline data for symbols ' + symbols[i] + ' ' + i)
+			process.stdout.write('Getting kline data for symbols ' + symbols[i] + ' ' + i)
 
 			klineArray.push({
 				symbol: symbols[i],
