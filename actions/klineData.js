@@ -1,5 +1,8 @@
 const axios = require('axios')
 
+const cliProgress = require('cli-progress')
+const bar = new cliProgress.SingleBar({ format: 'Fetching klineData... [{bar}] {value}/{total}% | {duration}', barIncompleteChar: ' ', stopOnComplete: true, clearOnComplete: false }, cliProgress.Presets.legacy)
+
 const api = 'https://api.binance.com/api/v3'
 
 const apiParams = (symbol, interval, limit) => {
@@ -10,8 +13,10 @@ const klineData = async (symbols, intervals, limit = 100) => {
 	try {
 		const klineArray = []
 
+		bar.start(100, 0) // progress
+
 		for (i = 0; i < symbols.length; i++) {
-			process.stdout.write('Getting kline data for symbols ' + symbols[i] + ' ' + i)
+			bar.update(parseInt((100 / symbols.length) * (i + 1))) // progress
 
 			klineArray.push({
 				symbol: symbols[i],

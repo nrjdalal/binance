@@ -4,7 +4,6 @@ const api = 'https://api.binance.com/api/v3'
 
 const getSymbols = async (limitVolume = 50000000) => {
 	try {
-		console.log('Getting symbols from Binance!\n')
 		const res = await axios.get(api + '/ticker/24hr')
 		const tempSymbols = []
 
