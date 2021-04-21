@@ -5,7 +5,7 @@ const cryptoBot = async () => {
 	const symbols = await getSymbols()
 
 	const klineData = require('./actions/klineData')
-	klineArray = await klineData(['BTCUSDT'], ['5m', '15m'], 125)
+	klineArray = await klineData(['BTCUSDT'], ['4h'], 125)
 
 	const indicatorData = require('./actions/indicatorData')
 	const indicatorArray = await indicatorData(klineArray)
