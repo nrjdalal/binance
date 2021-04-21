@@ -1,4 +1,3 @@
-const cron = require('node-cron')
 const fs = require('fs') // debugging
 
 const cryptoBot = async () => {
@@ -6,9 +5,12 @@ const cryptoBot = async () => {
 	const symbols = await getSymbols()
 
 	const klineData = require('./actions/klineData')
-	klineArray = await klineData(['BTCUSDT'], ['5m'], 1)
+	klineArray = await klineData(['BTCUSDT'], ['5m', '15m'], 125)
 
-	console.log(klineArray)
+	const indicatorData = require('./actions/indicatorData')
+	const indicatorArray = await indicatorData(klineArray)
+
+	console.log(indicatorArray[0])
 
 	//debugging - start
 	fs.writeFileSync('./klineData.js', `const klineArray = ${JSON.stringify(klineArray)}`, (err) => {
@@ -19,6 +21,4 @@ const cryptoBot = async () => {
 	//debugging - end
 }
 
-// cron.schedule('*/2 * * * *', () => {
 cryptoBot()
-// })

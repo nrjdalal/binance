@@ -15,6 +15,7 @@ const trendChecker = async () => {
 		arrr.push(res.data[i][4])
 	}
 
+	console.log(arrr)
 	// console.log(tulind.indicators.rsi)
 
 	tulind.indicators.rsi.indicator([arrr], [14], function (err, results) {
